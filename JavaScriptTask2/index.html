@@ -36,12 +36,14 @@
       }
 
       const fizz = document.getElementById("fizz").value;
-      const fizzCheck = fizz.match(/[^0-9]+/);
+      const fizzCheck = fizz.match(/^[0-9]+$/);
+      console.log(fizzCheck);
 
       const buzz = document.getElementById("buzz").value;
-      const buzzCheck = buzz.match(/[^0-9]+/);
+      const buzzCheck = buzz.match(/^[0-9]+$/);
+      console.log(buzzCheck);
 
-      if (fizzCheck === null && buzzCheck === null){
+      if (fizzCheck !== null && buzzCheck !== null){
         const fizzNum = parseInt(fizz);
         const buzzNum = parseInt(buzz);
 
@@ -56,7 +58,7 @@
             createChildElement('Buzz ', i);
           }
         }
-      }else{
+      } else {
         let divElement = document.createElement('div');
         divElement.id = 'child';
         divElement.textContent ='整数値を入力してください';
