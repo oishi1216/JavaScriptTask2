@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FizzBuzz問題</title>
+</head>
+<body>
+  <header>
+    <h1>FizzBuzz問題</h1>
+  </header>
+  <form name="form1">
+    <table>
+      <tr>
+        <td><label for="fizz">FizzNum:</label></td>
+        <td><input type="text" id="fizz" placeholder="整数値を入力してください"></td>
+      </tr>
+      <tr>
+        <td><label for="buzz">BuzzNum:</label></td>
+        <td><input type="text" id="buzz" placeholder="整数値を入力してください"></td>
+      </tr>
+    </table>
+    <input type="button" value="実行" id="btn">
+  </form>
+  <p>【出力】</p>
+  <div id="parent"></div>
+  <script>
+    const btn = document.getElementById('btn');
+    const parent = document.getElementById('parent');
+
+    const clickButton = () => {
+
+      if (parent.hasChildNodes()){
+        parent.innerHTML = '';
+      }
+
+      const fizz = document.getElementById("fizz").value;
+      const fizzCheck = fizz.match(/^[0-9]+$/);
+
+      const buzz = document.getElementById("buzz").value;
+      const buzzCheck = buzz.match(/^[0-9]+$/);
+
+      if (fizzCheck !== null && buzzCheck !== null){
+        const fizzNum = parseInt(fizz);
+        const buzzNum = parseInt(buzz);
+
+        for (let i = 1; i < 100; i++){
+          if (i % fizzNum === 0 && i % buzzNum === 0){
+            createChildElement('FizzBuzz ', i);
+          }
+          else if (i % fizzNum === 0){
+            createChildElement('Fizz ', i);
+          }
+          else if (i % buzzNum === 0){
+            createChildElement('Buzz ', i);
+          }
+        }
+      } else {
+        let divElement = document.createElement('div');
+        divElement.id = 'child';
+        divElement.textContent ='整数値を入力してください';
+        parent.appendChild(divElement);
+      }
+    };
+
+    const createChildElement = (text, num) => {
+      let divElement = document.createElement('div');
+      divElement.id = 'child';
+      divElement.textContent = text + num;
+      parent.appendChild(divElement);
+    };
+
+    btn.addEventListener("click", clickButton);
+
+  </script>
+</body>
+</html>
